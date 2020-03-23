@@ -4,9 +4,9 @@ var path = require('path');
 
 class CapsularDevServer {
     startServer(servePort, relativePath, absolutePath) {
-        app.use(relativePath, express.static(__dirname + absolutePath));
+        app.use("/" + relativePath, express.static(absolutePath, { root: "./" }));
         app.get('/*', function (req, res) {
-            res.sendFile(path.join(__dirname + '/index.html'));
+            res.sendFile(path.join('index.html'), { root: "./" });
         });
 
         app.listen(servePort);
